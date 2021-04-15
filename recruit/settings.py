@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get(
     'SECRET_KEY', 'n717gh^k@w-e!m#^#rz5ae79t)h!tnm^+6%$&b1bg##ly!jr_j')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+# DEBUG = True
 DEBUG = os.environ.get('DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = [
@@ -106,28 +106,36 @@ LOCAL_DEV = True
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-if LOCAL_DEV:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.environ.get('DB', 'recruitment'),
-            'USER': os.environ.get('DB_USER', 'root'),
-            'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-            'HOST': 'localhost',
-            'PORT': '3306'
-        },
-        'sqlite': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
+
+# if LOCAL_DEV:
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': os.environ.get('DB', 'recruitment'),
+#             'USER': os.environ.get('DB_USER', 'root'),
+#             'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+#             'HOST': 'localhost',
+#             'PORT': '3306'
+#         },
+#         'sqlite': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
