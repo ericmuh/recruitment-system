@@ -104,6 +104,7 @@ WSGI_APPLICATION = 'recruit.wsgi.application'
 LOCAL_DEV = True
 
 
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
