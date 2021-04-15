@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Clearance Files | Files{% endblock %}
+{% block content %}
+    
+    <section class="">
+        <div class="">
+           
+            <!-- Exportable Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h2>Manage Clearance Files</h2>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="text-right">
+                                        {% if perms.files.add_clearancefile %}
+                                            <a href="/admin/files/clearancefile/add" 
+                                                class="btn btn-sm bg-cyan waves-effect">
+                                                Add Clearance File
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Clearance Number</th>
+                                        <th>Submission Date</th>
+                                        <th>Clearance Date</th>
+                                        <th>Client Count</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for file in files %}
+                                        <tr>
+                                            <td>{{ file.title }}</td>
+                                            <td>{{ file.clearance_no }}</td>
+                                            <td>{{ file.submission_date }}</td>
+                                            <td>{{ file.clearance_date }}</td>
+                                            <td>{{ file.client_count }}</td>
+                                            <td>{{ file.created }}</td>
+                                            <td>
+                                                <button class="btn btn-xs bg-deep-orange waves-effect"
+                                                    data-toggle="modal" data-target="#ViewClearanceFileModal-{{ file.id }}">
+                                                    <i class="material-icons">visibility</i>
+                                                </button>
+                                                <div class="modal fade" id="ViewClearanceFileModal-{{ file.id }}" role="dialog" data-backdrop="static">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Clearance File Details</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <h5>Description</h5>
+                                                                <p>{{ file.description }}</p>
+                                                                <hr>
+                                                                <h5>Clearance File File</h5>
+                                                                {% if file.document %}
+                                                                    <a href="/media/{{ file.document }}" target="_blank">
+                                                                        File
+                                                                    </a>
+                                                                {% else %}
+                                                                    <i>No Clearance File File Attatched</i>
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                {% if perms.files.change_clearancefile %}
+                                                                    <a href="/admin/files/clearancefile/{{ file.id }}/change"
+                                                                        class="btn btn-sm btn-success">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.files.delete_clearancefile %}
+                                                                    <a href="/admin/files/clearancefile/{{ file.id }}/delete"
+                                                                        class="btn btn-sm btn-danger">Delete</a>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+        </div>
+    </section>
+{% endblock content %}
+{% block js %}
+    <script src="{% static 'js/pages/tables/clearance-files.js' %}" ></script>
+{% endblock js %}

@@ -1,0 +1,1 @@
+from recruit.wsgi import application

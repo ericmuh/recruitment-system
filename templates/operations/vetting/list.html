@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Vettings | Operations{% endblock %}
+{% block content %}
+    
+    <section class="">
+        <div class="">
+            <!-- Widgets -->
+            <div class="row clearfix">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-blue hover-expand-effect">
+                        <div class="icon">
+                            <a href="#">
+                                <i class="material-icons">person</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Pending</h5></div>
+                            <h4><strong>{{ pending }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-brown hover-expand-effect">
+                        <div class="icon">
+                            <a href="#">
+                                <i class="material-icons">refresh</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Active</h5></div>
+                            <h4><strong>{{ active }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-green hover-expand-effect">
+                        <div class="icon">
+                            <a href="#">
+                                <i class="material-icons">done</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Done</h5></div>
+                            <h4><strong>{{ done }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-pink hover-expand-effect">
+                        <div class="icon">
+                            <a href="#">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Cancelled</h5></div>
+                            <h4><strong>{{ cancelled }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-green hover-expand-effect">
+                        <div class="icon">
+                            <a href="#">
+                                <i class="material-icons">done</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Passed</h5></div>
+                            <h4><strong>{{ passed }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                    <div class="info-box bg-red hover-expand-effect">
+                        <div class="icon">
+                            <a href="#">
+                                <i class="material-icons">close</i>
+                            </a>
+                        </div>
+                        <div class="content">
+                            <div class="text"><h5>Failed</h5></div>
+                            <h4><strong>{{ failed }}</strong></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Exportable Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h2>Manage Vettings</h2>
+                                </div>
+                                <div class="col-sm-3">
+                                    {% if perms.operations.add_vetting %}
+                                    <div class="text-right">
+                                         <button class="btn btn-sm bg-cyan waves-effect"
+                                                data-toggle="modal" data-target="#AddModal-{{ form_action }}">
+                                              {{form_title}}
+                                        </button>
+                                    </div>
+                                    <!-- modal for adding -->
+                                    {% include "operations/partials/_add-modal.html"%}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Job</th>
+                                        <th>DISO</th>
+                                        <th>GISO</th>
+                                        <th>Training</th>
+                                        <th>Ministry</th>
+                                        <th>Musaned</th>
+                                        <th>Waqala</th>
+                                        <th>Contract</th>
+                                        <th>Status</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for vetting in data %}
+                                        <tr>
+                                            <td>{{ vetting.client }}</td>
+                                            <td>{{ vetting.client.job }}</td>
+                                            <td>
+                                                {% if vetting.diso %}
+                                                    <span class="badge badge-pill bg-green">Approved</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if vetting.giso %}
+                                                    <span class="badge badge-pill bg-green">Approved</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if vetting.training %}
+                                                    <span class="badge badge-pill bg-green">Approved</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if vetting.ministry %}
+                                                    <span class="badge badge-pill bg-green">Approved</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if vetting.musaned %}
+                                                    <span class="badge badge-pill bg-green">Approved</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if vetting.waqala %}
+                                                    <span class="badge badge-pill bg-green">Approved</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if vetting.client.contract.status == 0 %}
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% elif vetting.client.contract.status == 1 %}
+                                                    <span class="badge badge-pill bg-green">Active</span>
+                                                {% elif vetting.client.contract.status == 2 %}
+                                                    <span class="badge badge-pill bg-orange">Done</span>
+                                                {% elif vetting.client.contract.status == 3 %}
+                                                    <span class="badge badge-pill bg-red">Cancelled</span>
+                                                {% elif vetting.client.contract.status == 4 %}
+                                                    <span class="badge badge-pill bg-green">Passed</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-red">Failed</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if vetting.status == 0 %}
+                                                    <span class="badge badge-pill bg-blue">Pending</span>
+                                                {% elif vetting.status == 1 %}
+                                                    <span class="badge badge-pill bg-green">Active</span>
+                                                {% elif vetting.status == 2 %}
+                                                    <span class="badge badge-pill bg-orange">Done</span>
+                                                {% elif vetting.status == 3 %}
+                                                    <span class="badge badge-pill bg-red">Cancelled</span>
+                                                {% elif vetting.status == 4 %}
+                                                    <span class="badge badge-pill bg-green">Passed</span>
+                                                {% else %}
+                                                    <span class="badge badge-pill bg-red">Failed</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ vetting.created }}</td>
+                                            <td>
+                                                <button class="btn btn-xs bg-deep-orange waves-effect"
+                                                    data-toggle="modal" data-target="#ViewVettingModal-{{ vetting.id }}">
+                                                    <i class="material-icons">visibility</i>
+                                                </button>
+                                                <div class="modal fade" id="ViewVettingModal-{{ vetting.id }}" role="dialog" data-backdrop="static">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Vetting Details</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Destination</h6>
+                                                                        <p>{{ vetting.destination }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Empoloyer</h6>
+                                                                        <p>{{ vetting.employer }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>District</h6>
+                                                                        <p>{{ vetting.district }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>County</h6>
+                                                                        <p>{{ vetting.county }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Sub-County/Town</h6>
+                                                                        <p>{{ vetting.subcounty }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Parish</h6>
+                                                                        <p>{{ vetting.parish }}</p>
+                                                                    </div>
+                                                                    <div class="col-xs-3">
+                                                                        <h6>Village</h6>
+                                                                        <p>{{ vetting.village }}</p>
+                                                                    </div>
+                                                                    <div class="col-sm-4">
+                                                                        <h5>Vetting File</h5>
+                                                                        {% if vetting.document %}
+                                                                            <a href="/media/{{ vetting.document }}" target="_blank">
+                                                                                File
+                                                                            </a>
+                                                                        {% else %}
+                                                                            <i>No Vetting File Attatched</i>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                {% if perms.operations.change_vetting %}
+                                                                    <a href="/admin/operations/vetting/{{ vetting.id }}/change"
+                                                                        class="btn btn-sm btn-success">Edit</a>
+                                                                {% endif %}
+                                                                {% if perms.operations.delete_vetting %}
+                                                                    <a href="/admin/operations/vetting/{{ vetting.id }}/delete"
+                                                                        class="btn btn-sm btn-danger">Delete</a>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #END# Exportable Table -->
+        </div>
+    </section>
+{% endblock content %}
+{% block js %}
+    <script src="{% static 'js/pages/tables/vettings.js' %}" ></script>
+{% endblock js %}
