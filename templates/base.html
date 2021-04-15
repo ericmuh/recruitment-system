@@ -11,7 +11,13 @@
             {% endblock title %} | {{ settings.COMPANY }}
         </title>
         <!-- Favicon-->
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon/favicon-96x96.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png' %}">
+        <link rel="manifest" href=" {% static 'images/favicon/manifest.json' %}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="theme-color" content="#ffffff">
         <!-- Google Fonts -->
         <link href="{% static 'iconfont/material-icons.css' %}" rel="stylesheet">
         <!-- Bootstrap Core Css -->
