@@ -1,11 +1,13 @@
 asgiref==3.3.1
 astroid==2.4.2
+autopep8==1.5.6
 colorama==0.4.4
 defusedxml==0.6.0
 diff-match-patch==20200713
 dj-database-url==0.5.0
 Django==3.1.5
 django-colorfield==0.4.1
+django-crispy-forms==1.11.2
 django-flat-responsive==2.0
 django-flat-theme==1.1.4
 django-import-export==2.5.0
@@ -22,7 +24,10 @@ mysqlclient==2.0.3
 odfpy==1.4.1
 openpyxl==3.0.5
 Pillow==8.1.0
+pycodestyle==2.7.0
 pylint==2.6.0
+pylint-django==2.4.2
+pylint-plugin-utils==0.6
 pytz==2020.5
 PyYAML==5.3.1
 six==1.15.0
