@@ -35,7 +35,7 @@ ALLOWED_HOSTS = [
     'harchar.managementsystemsug.com',
     'recruitment-cms.herokuapp.com',
     'https://enjazzi-recruitment.herokuapp.com/',
-    'enjazzi-recruitment.herokuapp.com/',
+    'enjazzi-recruitment.herokuapp.com',
     '127.0.0.1',
     'localhost'
 ]
