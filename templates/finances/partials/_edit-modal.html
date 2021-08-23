@@ -1,0 +1,31 @@
+{% load static %}
+<div class="modal fade" id="ViewInterpolModal-{{ interpol.id }}" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Interpol Details</h4>
+            </div>
+            <div class="modal-body">
+                <h5>Interpol File</h5>
+                {% if interpol.document %}
+                    <a href="/media/{{ interpol.document }}" target="_blank">
+                        File
+                    </a>
+                {% else %}
+                    <i>No Interpol File Attatched</i>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                {% if perms.operations.change_interpol %}
+                    <a href="/admin/operations/interpol/{{ interpol.id }}/change"
+                        class="btn btn-sm btn-success">Edit</a>
+                {% endif %}
+                {% if perms.operations.delete_interpol %}
+                    <a href="/admin/operations/interpol/{{ interpol.id }}/delete"
+                        class="btn btn-sm btn-danger">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

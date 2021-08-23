@@ -14,6 +14,7 @@ class JobResource(resources.ModelResource):
     class Meta:
         model = Job
         fields = ('title', 'category', 'quantity', 'partner', 'appliation_fee', 'salary','created')
+        import_id_fields = ['id']
 
 @admin.register(Job)
 class JobAdmin(ImportExportModelAdmin):

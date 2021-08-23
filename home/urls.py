@@ -53,6 +53,7 @@ urlpatterns = [
     path('payments', finances.payments, name='payments'),
     path('expenses', finances.expenses, name='expenses'),
     path('fees', finances.fees, name='fees'),
+    path('add_fees/', finances.add_fees, name='add_fees'),
 
     # files
     path('clearance-files', files.clearance_files, name='clearance-files'),

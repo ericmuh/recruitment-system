@@ -13,6 +13,8 @@ def tasks(request):
     args['a'] = 'tasks'
     return render(request, 'others/tasks.html', args)
 
+
+
 @login_required()
 def recruitments(request):
     """

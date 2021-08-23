@@ -21,6 +21,7 @@ class ExpenseAdmin(ImportExportModelAdmin):
 class FeeResource(resources.ModelResource):
     class Meta:
         model = Fee
+        import_id_fields = ['id']
         fields = ('title', 'description', 'job', 'amount', 'is_active', 'created')
 
 @admin.register(Fee)
@@ -35,6 +36,7 @@ class PaymentResource(resources.ModelResource):
     class Meta:
         model = Payment
         fields = ('client', 'fee', 'amount_paid', 'description', 'created')
+    import_id_fields = ['id']
 
 @admin.register(Payment)
 class PaymentAdmin(ImportExportModelAdmin):
