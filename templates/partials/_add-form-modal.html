@@ -13,7 +13,7 @@
         <button type="button" class="close" data-dismiss="modal">
           &times;
         </button>
-        <h4 class="modal-title"> Add {{form_title}}</h4>
+        <h4 class="modal-title"> {{form_title}}</h4>
       </div>
       <div class="modal-body">
         <section class="">
@@ -21,15 +21,6 @@
             <!-- Exportable Table -->
             <div class="row clearfix">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                  <div class="header">
-                    <div class="row">
-                      <div class="col-sm-9">
-                        <h2> Add {{form_title}}</h2>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="body">
                     <form method="post" class="form" action="{{form_action}}/">
                       {% csrf_token %}
                       {{ form | crispy }}
@@ -39,8 +30,6 @@
                         value="{{form_title}}"
                       />
                     </form>
-                  </div>
-                </div>
               </div>
             </div>
             <!-- #END# Exportable Table -->

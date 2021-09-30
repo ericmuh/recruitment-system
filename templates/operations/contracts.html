@@ -97,21 +97,21 @@
                                     <h2>Manage Contracts</h2>
                                 </div>
                                 <div class="col-sm-3">
-                                    
-                                        {% if perms.operations.add_contracts %}
-                                        <div class="text-right">
-                                             <button class="btn btn-sm bg-cyan waves-effect"
-                                                    data-toggle="modal" data-target="#AddModal-{{ form_action }}">
-                                                  {{form_title}}
-                                            </button>
-                                        </div>
-                                        <!-- modal for adding -->
-                                        {% include "operations/partials/_add-modal.html"%}
-                                        {% endif %}
-                               
+                                    {% if perms.operations.add_interview %}
+                                    <div class="text-right">
+                                         <button class="btn btn-sm bg-cyan waves-effect"
+                                            data-toggle="modal" data-target="#AddModal-{{ form_action }}">
+                                            {{form_title}}
+                                         </button>
+                                    </div>
+                                           <!-- modal for adding -->
+                                    {% include "partials/_add-form-modal.html"%}
+                                    {% endif %}
+                                  
+                                </div>
                             </div>
                         </div>
-                        <div class="body">
+                         <div class="body">
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                     <tr>

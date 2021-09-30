@@ -5,9 +5,9 @@ from finances.models import Fee, Payment, Expense
 from finances.forms import FeeForm, PaymentForm, ExpenseForm
 
 # A simple Util Function.
-def contextCreater(model, form, form_action,a):
+def contextCreater(model, form, form_action ):
     context = {
-        'a':a,
+        # 'a':a,
         'form':form(),
         'form_title': f'{form_action.replace("_", " ").capitalize()}',
         "form_action": form_action,
@@ -21,7 +21,7 @@ def fees(request):
     Fees View
 
     """
-    context = contextCreater(Fee, FeeForm,"add_fees","fees")
+    context = contextCreater(Fee, FeeForm,"add_fees")
 
     return render(request, 'finances/fees.html', context)
 
@@ -57,7 +57,7 @@ def expenses(request):
     """
     Expenses View
     """
-    context = contextCreater(Expense, ExpenseForm,"add_expenses", "expenses")
+    context = contextCreater(Expense, ExpenseForm,"add_expenses")
 
     return render(request, 'finances/expenses.html', context)
 
@@ -84,12 +84,20 @@ def add_expenses(request):
 @login_required()
 def payments(request):
     """
-    Payments View
+    Expenses View
     """
-    args = {}
-    args['payments'] = Payment.objects.all()
-    args['a'] = 'payments'
-    return render(request, 'finances/payments.html', args)
+    context = contextCreater(Expense, ExpenseForm,"add_payments")
+
+    return render(request, 'finances/payments.html', context)
+# @login_required()
+# def payments(request):
+#     """
+#     Payments View
+#     """
+#     args = {}
+#     args['payments'] = Payment.objects.all()
+#     args['a'] = 'payments'
+#     return render(request, 'finances/payments.html', args)
 
 # ==================== Add Payment =====================#
 @login_required()

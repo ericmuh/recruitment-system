@@ -7,13 +7,15 @@ from others import views as others
 from operations import views as operations
 
 urlpatterns = [
-
+    #  ========== Client URL============#
     path('clients/<int:client_id>/pay-reg-fee',
          views.pay_reg_fee, name='pay-reg-fee'),
     path('clients/<int:client_id>/register', views.register, name='register'),
-
     path('clients', views.clients, name='clients'),
+    path('add_client/', views.add_client, name='add_client'),
+
     path('jobs', views.jobs, name='jobs'),
+    path('add_job/', views.add_job, name='add_job'),
     path('branches', views.branches, name='branches'),
     path('add_branch/', views.add_branch, name='add_branch'),
 

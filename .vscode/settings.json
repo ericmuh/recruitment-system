@@ -2,7 +2,7 @@
     "editor.fontFamily": "\"Fira Code\"",
     "editor.fontWeight": "normal",
     "editor.fontLigatures": true,
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "IntelliJ-ish Darcula",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.preferredDarkColorTheme": "One Dark Pro",
     "python.linting.pylintArgs": ["--load-plugins", "--errors-only", "pylint_django","--disable=django-not-configured",

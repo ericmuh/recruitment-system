@@ -5,8 +5,8 @@ from home.models import Client, Job, Branch
 from settings.models import Partner, Stage
 from operations.models import Clearance, Contract, Interpol, Interview, Training, Medical, Passport, Ticket, Vetting, Visa, OtherOperation, Travel
 
-from .forms import BranchForm
-@login_required()
+from .forms import BranchForm, ClientForm,JobForm
+
 def index(request):
     """
     Home screen, Dashboard
@@ -22,16 +22,45 @@ def index(request):
     }
     return render(request, "home/index.html", args)
 
+# @login_required()
+# def clients(request):
+#     """
+#     Listing Clients
+#     """
+#     args = {
+#         'clients': Client.objects.all(),
+#         'a': 'clients'
+#     }
+#     return render(request, 'clients.html', args)
+
 @login_required()
 def clients(request):
     """
-    Listing Clients
-    """
-    args = {
-        'clients': Client.objects.all(),
-        'a': 'clients'
+    List all clients
+    """   
+    context = {
+        "clients":Client.objects.all(),
+        "form": ClientForm(),
+        "form_title":"Add Client",
+        "form_action":"add_client"
     }
-    return render(request, 'clients.html', args)
+    print(context)
+    return render(request, 'clients.html', context)
+
+@login_required()
+def add_client(request):
+    print(request.method)
+    if request.method == 'POST':
+        form = ClientForm(request.POST)
+        print(form.data)
+        print(form.errors)
+        print(form.is_valid(), "🤞")
+        if form.is_valid():
+            print("everything is 👌")
+            form.save()
+            return redirect('clients')
+    return redirect('clients')
+
 
 @login_required()
 def pay_reg_fee(request, client_id):
@@ -114,15 +143,29 @@ def register(request, client_id):
         
     return redirect(clients)
 
+# @login_required()
+# def jobs(request):
+#     """
+#     List All Jobs
+#     """
+#     args = {}
+#     args['jobs'] = Job.objects.all()
+#     args['a'] = 'jobs'
+#     return render(request, 'jobs.html', args)
+
+
 @login_required()
 def jobs(request):
     """
-    List All Jobs
-    """
-    args = {}
-    args['jobs'] = Job.objects.all()
-    args['a'] = 'jobs'
-    return render(request, 'jobs.html', args)
+    List all jobs
+    """   
+    context = {
+        "jobs":Job.objects.all(),
+        "form": JobForm(),
+        "form_title":"Add Job",
+        "form_action":"add_job"
+    }
+    return render(request, 'jobs.html', context)
 
 @login_required()
 def branches(request):
@@ -136,6 +179,21 @@ def branches(request):
         "form_action":"add_branch"
     }
     return render(request, 'branches.html', context)
+
+@login_required()
+def add_job(request):
+    print(request.method)
+    if request.method == 'POST':
+        form = jobForm(request.POST)
+        print(form.data)
+        print(form.errors)
+        print(form.is_valid(), "🤞")
+        if form.is_valid():
+            print("everything is 👌")
+            form.save()
+            return redirect('jobs')
+    return redirect('job')
+
 @login_required()
 def add_branch(request):
     print(request.method)
