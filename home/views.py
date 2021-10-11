@@ -7,6 +7,7 @@ from operations.models import Clearance, Contract, Interpol, Interview, Training
 
 from .forms import BranchForm, ClientForm,JobForm
 
+@login_required()
 def index(request):
     """
     Home screen, Dashboard

@@ -1,8 +1,4 @@
-.sticky {
-    position: sticky;
-    top: 0;
-    max-height: 100vh;
-}
+
 
 .toggle-nav-sidebar {
     z-index: 20;
@@ -20,26 +16,7 @@
     padding: 0;
 }
 
-[dir="rtl"] .toggle-nav-sidebar {
-    border-left: 1px solid #eaeaea;
-    border-right: 0;
-}
 
-.toggle-nav-sidebar:hover,
-.toggle-nav-sidebar:focus {
-    background-color: #f6f6f6;
-}
-
-#nav-sidebar {
-    z-index: 15;
-    flex: 0 0 275px;
-    left: -276px;
-    margin-left: -276px;
-    border-top: 1px solid transparent;
-    border-right: 1px solid #eaeaea;
-    background-color: #ffffff;
-    overflow: auto;
-}
 
 [dir="rtl"] #nav-sidebar {
     border-left: 1px solid #eaeaea;
