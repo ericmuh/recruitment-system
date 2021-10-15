@@ -179,19 +179,15 @@ def branches(request):
     """
     List all Branches
     """   
-    context = {
-        "branches":Branch.objects.all(),
-        "form": BranchForm(),
-        "form_title":"Add Branch",
-        "form_action":"add_branch"
-    }
+    context = contextCreater(Branch, BranchForm,"add_branch", a="branches")
+
     return render(request, 'branches.html', context)
 
 @login_required()
 def add_job(request):
     print(request.method)
     if request.method == 'POST':
-        form = jobForm(request.POST)
+        form = JobForm(request.POST)
         print(form.data)
         print(form.errors)
         print(form.is_valid(), "🤞")

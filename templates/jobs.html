@@ -1,6 +1,6 @@
 ﻿{% extends 'base.html' %}
 {% load static %}
-{% block title %}Branches | System Admin{% endblock %}
+{% block title %}Jobs | System Admin{% endblock %}
 {% block content %}
     
    
@@ -13,7 +13,7 @@
                                     <h3>Manage Jobs</h3>
                                 </div>
                                 <div class="col-sm-3">
-                                    {% if perms.operations.add_ticket %}
+                                    {% if perms.operations.add_job %}
                                     <div class="text-right">
                                         <button class="btn btn-sm bg-cyan waves-effect"
                                              data-toggle="modal" data-target="#AddModal-{{ form_action }}">
