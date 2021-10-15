@@ -1,5 +1,8 @@
 ﻿/* Navbar ====================================== */
 /* Start Ali Addins*/
+.modal-form select bootstrap-select{
+display: none !important;}
+
 .margin-right {
   margin-right: 20px !important;
 }

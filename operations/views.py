@@ -6,7 +6,7 @@ from .forms import InterviewForm, ClearanceForm,ContractForm, TravelForm, Traini
 
 
 # A simple Util Function.
-def contextCreater(model, form, form_action):
+def contextCreater(model, form, form_action, a="a"):
     context = {
         'pending': model.objects.filter(status=0).count(),
         'active': model.objects.filter(status=1).count(),
@@ -17,7 +17,8 @@ def contextCreater(model, form, form_action):
         'form':form(),
         'form_title': f'{form_action.replace("_", " ").capitalize()}',
         "form_action": form_action,
-        "data": model.objects.all()
+        "data": model.objects.all(),
+        "a":a
     }
     return context
 
@@ -30,7 +31,7 @@ def clearances(request):
     """
     Clearances View
     """
-    context = contextCreater(Clearance, ClearanceForm,"add_clearance")
+    context = contextCreater(Clearance, ClearanceForm,"add_clearance", a="clearances")
 
     return render(request, 'operations/clearances.html', context)
 
@@ -58,7 +59,7 @@ def contracts(request):
     """
     Contracts View
     """
-    context = contextCreater(Contract, ContractForm,"add_contract")
+    context = contextCreater(Contract, ContractForm,"add_contract",a="contracts")
     return render(request, 'operations/contracts.html', context)
 # ==================== Add Contract =====================#
 @login_required()
@@ -84,7 +85,7 @@ def interpols(request):
     """
     Interpols View
     """
-    context = contextCreater(Interpol, InterpolForm,"add_interpol")
+    context = contextCreater(Interpol, InterpolForm,"add_interpol", a="interpols")
     return render(request, 'operations/interpols.html', context)
 
 @login_required()
@@ -110,7 +111,7 @@ def interviews(request):
     """
     Interviews View
     """
-    context = contextCreater(Interview, InterviewForm,"add_interview")
+    context = contextCreater(Interview, InterviewForm,"add_interview", a="interviews")
     return render(request, 'operations/interviews.html', context)
 
 # ==================== Add interviews Form =====================#
@@ -139,7 +140,7 @@ def trainings(request):
     """
     Trainings View
     """
-    context = contextCreater(Training, TrainingForm,"add_training")
+    context = contextCreater(Training, TrainingForm,"add_training",a="trainings")
     return render(request, 'operations/trainings.html', context)
 
 @login_required()
@@ -164,7 +165,7 @@ def medicals(request):
     """
     Medicals View
     """
-    context = contextCreater(Medical, MedicalForm,"add_medical")
+    context = contextCreater(Medical, MedicalForm,"add_medical", a="medicals")
     return render(request, 'operations/medicals.html', context)
 
 @login_required()
@@ -189,7 +190,7 @@ def other_ops(request):
     """
     Other Operations View
     """
-    context = contextCreater(OtherOperation, OtherOperationForm,"add_other_operation")
+    context = contextCreater(OtherOperation, OtherOperationForm,"add_other_operation",a="other-ops")
     return render(request, 'operations/other-ops.html', context)
 
 @login_required()
@@ -214,7 +215,7 @@ def passports(request):
     """
     Passports View
     """
-    context = contextCreater(Passport, PassportForm,"add_passport")
+    context = contextCreater(Passport, PassportForm,"add_passport",a="passports")
     return render(request, 'operations/passports.html', context)
 
 @login_required()
@@ -239,7 +240,7 @@ def tickets(request):
     """
     Tickets View
     """
-    context = contextCreater(Ticket,TicketForm,"add_ticket")
+    context = contextCreater(Ticket,TicketForm,"add_ticket",a="tickets")
     return render(request, 'operations/tickets.html', context)
 
 @login_required()
@@ -265,7 +266,7 @@ def vettings(request):
     """
     Vettings View
     """
-    context = contextCreater(Vetting, VettingForm, "add_vetting")
+    context = contextCreater(Vetting, VettingForm, "add_vetting",a="vettings")
     return render(request, 'operations/vetting/list.html', context)
 
 @login_required()
@@ -287,7 +288,7 @@ def vetting_album(request):
     """
     Vetting Album View
     """
-    context = contextCreater(Vetting, VettingForm,"add_vetting")
+    context = contextCreater(Vetting, VettingForm,"add_vetting",a="vetting-album")
     return render(request, 'operations/vetting/album.html', context)
 
 
@@ -313,7 +314,7 @@ def visas(request):
     """
     Visas View
     """
-    context = contextCreater(Visa,VisaForm,"add_visa")
+    context = contextCreater(Visa,VisaForm,"add_visa",a="visas")
 
     return render(request, 'operations/visas.html', context)
 
@@ -338,7 +339,7 @@ def travel_plans(request):
     """
     Travel Plans View
     """
-    context = contextCreater(Travel, TravelForm,"add_travel_plan")
+    context = contextCreater(Travel, TravelForm,"add_travel_plan",a="travel-plans")
 
     return render(request, 'operations/travel-plans.html', context)
 

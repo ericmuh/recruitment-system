@@ -6,7 +6,7 @@ from others.forms import TaskForm, RecruitmentForm
 
 
 # A simple Util Function.
-def contextCreater(model, form, form_action):
+def contextCreater(model, form, form_action, a="a"):
     context = {
         'pending': model.objects.filter(status=0).count(),
         'active': model.objects.filter(status=1).count(),
@@ -17,7 +17,8 @@ def contextCreater(model, form, form_action):
         'form':form(),
         'form_title': f'{form_action.replace("_", " ").capitalize()}',
         "form_action": form_action,
-        "data": model.objects.all()
+        "data": model.objects.all(),
+        "a":a
     }
     return context
 
@@ -26,7 +27,7 @@ def tasks(request):
     """
     tasks View
     """
-    context = contextCreater(Task, TaskForm,"add_task")
+    context = contextCreater(Task, TaskForm,"add_task", a="tasks")
 
     return render(request, 'others/tasks.html', context)
 
@@ -51,7 +52,7 @@ def recruitments(request):
     """
     recruitments View
     """
-    context = contextCreater(Recruitment, RecruitmentForm,"add_recruitment")
+    context = contextCreater(Recruitment, RecruitmentForm,"add_recruitment",a="recruitments")
 
     return render(request, 'others/recruitments.html', context)
 

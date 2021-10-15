@@ -56,7 +56,7 @@
                                 <a href="{% if user.is_staff %}/admin{% else %}/{% endif %}">
                                     <img src="{% static 'images/user.jpg' %}" 
                                         style="border-radius: 10px" width="30" height="30" alt="User" />
-                                    Site Admin | {{ user.username }}
+                                   {{ user.username }}
                                 </a>
                             </li>
                         </ul>
@@ -313,7 +313,7 @@
                                         </ul>
                                     </li>
                                 {% endif %}
-                                {% if perms.files %}
+                                {% if perms.view_files %}
                                     <li class="{% if a == 'clearance-files' or a == 'client-files' %}active{% endif %}">
                                         <a href="javascript:void(0);" class="menu-toggle">
                                             <i class="material-icons">folder_open</i>
@@ -410,7 +410,7 @@
         {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script> {% endcomment %}
 
         <!-- Select Plugin Js -->
-        <script src="{% static 'plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+        <!-- <script src="{% static 'plugins/bootstrap-select/js/bootstrap-select.js' %}"></script> -->
         <!-- Slimscroll Plugin Js -->
         <script src="{% static 'plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
         <!-- Waves Effect Plugin Js -->

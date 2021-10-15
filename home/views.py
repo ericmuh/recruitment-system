@@ -7,6 +7,20 @@ from operations.models import Clearance, Contract, Interpol, Interview, Training
 
 from .forms import BranchForm, ClientForm,JobForm
 
+
+# A simple Util Function.
+def contextCreater(model, form, form_action, a="a"):
+    context = {
+        'form':form(),
+        'form_title': f'{form_action.replace("_", " ").capitalize()}',
+        "form_action": form_action,
+        "data": model.objects.all(),
+        "a":a
+    }
+    return context
+
+
+
 @login_required()
 def index(request):
     """
@@ -39,13 +53,9 @@ def clients(request):
     """
     List all clients
     """   
-    context = {
-        "clients":Client.objects.all(),
-        "form": ClientForm(),
-        "form_title":"Add Client",
-        "form_action":"add_client"
-    }
-    print(context)
+  
+    context = contextCreater(Client, ClientForm,"add_client", a="clients")
+
     return render(request, 'clients.html', context)
 
 @login_required()
@@ -160,12 +170,8 @@ def jobs(request):
     """
     List all jobs
     """   
-    context = {
-        "jobs":Job.objects.all(),
-        "form": JobForm(),
-        "form_title":"Add Job",
-        "form_action":"add_job"
-    }
+    context = contextCreater(Job, JobForm,"add_job", a="jobs")
+
     return render(request, 'jobs.html', context)
 
 @login_required()
